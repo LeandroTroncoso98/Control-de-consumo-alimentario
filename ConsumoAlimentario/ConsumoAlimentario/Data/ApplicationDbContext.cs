@@ -9,7 +9,14 @@ namespace ConsumoAlimentario.Data
         {
 
         }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<ConsumoDiarioAlimento>().HasKey(c => new {c.ConsumoDiario_Id,c.Alimento_Id});
+            base.OnModelCreating(builder);
+        }
         public DbSet<Alimento> Alimento { get; set; }
+        public DbSet<ConsumoDiario> ConsumoDiario { get; set; }
+        public DbSet<ConsumoDiarioAlimento> ConsumoDiarioAlimento { get; set; }
 
     }
 }

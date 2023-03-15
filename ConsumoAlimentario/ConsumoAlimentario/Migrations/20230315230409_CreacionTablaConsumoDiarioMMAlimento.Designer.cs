@@ -4,6 +4,7 @@ using ConsumoAlimentario.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConsumoAlimentario.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230315230409_CreacionTablaConsumoDiarioMMAlimento")]
+    partial class CreacionTablaConsumoDiarioMMAlimento
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,7 +103,7 @@ namespace ConsumoAlimentario.Migrations
                         .HasColumnType("real");
 
                     b.Property<DateTime>("Fecha")
-                        .HasColumnType("Date");
+                        .HasColumnType("datetime2");
 
                     b.Property<float>("FibrasTotales")
                         .HasColumnType("real");

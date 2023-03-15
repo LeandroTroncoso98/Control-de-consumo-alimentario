@@ -1,4 +1,7 @@
 using ConsumoAlimentario.Data;
+using ConsumoAlimentario.Mapper;
+using ConsumoAlimentario.Repository;
+using ConsumoAlimentario.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +10,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("ConexionSQL"));
 });
+
+builder.Services.AddScoped<IAlimentoRepository, AlimentoRepository>();
+
+
+
+//automapper
+builder.Services.AddAutoMapper(typeof(AlimentosMapper));
 
 // Add services to the container.
 
