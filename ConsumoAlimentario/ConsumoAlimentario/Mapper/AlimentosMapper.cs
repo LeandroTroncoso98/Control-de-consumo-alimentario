@@ -12,6 +12,7 @@ namespace ConsumoAlimentario.Mapper
             CreateMap<Alimento, AlimentoDto>().ReverseMap();
             CreateMap<Alimento, AlimentoCreateDto>().ReverseMap();
             CreateMap<ConsumoDiario, ConsumoDiarioList>().ReverseMap();
+            CreateMap<AlimentoCargado, AlimentoCargadoCrearDto>().ReverseMap();
         }
     }
 }

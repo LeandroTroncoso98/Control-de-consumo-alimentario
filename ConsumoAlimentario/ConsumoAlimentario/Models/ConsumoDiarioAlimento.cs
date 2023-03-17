@@ -9,6 +9,6 @@ namespace ConsumoAlimentario.Models
         [ForeignKey("ConsumoDiario")]
         public int ConsumoDiario_Id { get; set; }
         public ConsumoDiario ConsumoDiario { get; set;}
-        public Alimento Alimento { get; set;}
+        public AlimentoCargado Alimento { get; set;}
     }
 }

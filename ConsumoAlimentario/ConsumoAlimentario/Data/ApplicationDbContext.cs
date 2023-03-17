@@ -17,6 +17,7 @@ namespace ConsumoAlimentario.Data
         public DbSet<Alimento> Alimento { get; set; }
         public DbSet<ConsumoDiario> ConsumoDiario { get; set; }
         public DbSet<ConsumoDiarioAlimento> ConsumoDiarioAlimento { get; set; }
+        public DbSet<AlimentoCargado> AlimentoCargado { get; set; }
 
     }
 }

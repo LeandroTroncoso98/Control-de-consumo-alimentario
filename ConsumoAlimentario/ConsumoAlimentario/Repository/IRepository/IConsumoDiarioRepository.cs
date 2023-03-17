@@ -7,6 +7,7 @@ namespace ConsumoAlimentario.Repository.IRepository
         ICollection<ConsumoDiario> GetAll();
         ConsumoDiario Get(int id);
         bool Guardar();
+        ConsumoDiario AbrirConsumoDiario();
         bool CrearConsumoDiario(ConsumoDiario consumo);
     }
 }

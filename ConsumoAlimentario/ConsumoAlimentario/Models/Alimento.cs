@@ -26,6 +26,7 @@ namespace ConsumoAlimentario.Models
         public float Calcio { get; set; }
         public float Hierro { get; set; }
         public float Cantidad { get; set; }
-        public ICollection<ConsumoDiarioAlimento> ConsumoDiarioAlimentos { get; set; }
+        public List<AlimentoCargado> AlimentoCargado { get; set; }
+       
     }
 }
