@@ -26,7 +26,7 @@ namespace ConsumoAlimentario.Repository
 
         public bool EditarAlimento(Alimento alimento)
         {
-            _context.Alimento.Remove(alimento);
+            _context.Alimento.Update(alimento);
             return Guardar();
         }
 
