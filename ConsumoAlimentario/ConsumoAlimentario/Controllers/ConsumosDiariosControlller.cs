@@ -14,15 +14,14 @@ namespace ConsumoAlimentario.Controllers
     {
         private readonly IAlimentoCargadoRepository _alimentoRepository;
         private readonly IConsumoDiarioRepository _consumoDiarioRepository;
-        private readonly IConsumoDiarioAlimentoRepository _consumoDiarioAlimentoRepository;
         private readonly IMapper _mapper;
-        public ConsumosDiariosControlller(IAlimentoCargadoRepository alimentoRepository, IConsumoDiarioRepository consumoDiarioRepository, IConsumoDiarioAlimentoRepository consumoDiarioAlimentoRepository, IMapper mapper)
+        public ConsumosDiariosControlller(IAlimentoCargadoRepository alimentoRepository, IConsumoDiarioRepository consumoDiarioRepository, IMapper mapper)
         {
             _alimentoRepository = alimentoRepository;
             _consumoDiarioRepository = consumoDiarioRepository;
-            _consumoDiarioAlimentoRepository = consumoDiarioAlimentoRepository;
             _mapper = mapper;
         }
+
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -36,6 +35,7 @@ namespace ConsumoAlimentario.Controllers
             }
             return Ok();
         }
+
         [HttpGet("consumoDiarioId:int",Name = "GetConsumoDiario")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
@@ -47,6 +47,7 @@ namespace ConsumoAlimentario.Controllers
             var consumoDiarioDto = _mapper.Map<ConsumoDiarioList>(consumoDiario);
             return Ok(consumoDiarioDto);
         }
+
         [HttpPost]
         [ProducesResponseType(201, Type = typeof(ConsumoDiarioCrearDto))]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -71,6 +72,7 @@ namespace ConsumoAlimentario.Controllers
             }
             return CreatedAtRoute("GetConsumoDiario", new { consumoDiarioId = consumoDiario.ConsumoDiario_Id }, consumoDiario);
         }
+
 
     }
 }

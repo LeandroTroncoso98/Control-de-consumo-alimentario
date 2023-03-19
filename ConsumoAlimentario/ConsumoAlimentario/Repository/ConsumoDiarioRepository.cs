@@ -1,6 +1,7 @@
 ﻿using ConsumoAlimentario.Data;
 using ConsumoAlimentario.Models;
 using ConsumoAlimentario.Repository.IRepository;
+using System.ComponentModel;
 
 namespace ConsumoAlimentario.Repository
 {
@@ -39,6 +40,17 @@ namespace ConsumoAlimentario.Repository
         public bool Guardar()
         {
             return _context.SaveChanges() >= 0 ? true : false;
+        }
+        public bool AgregarAlimentoAConsumo(int consumoDiarioId,AlimentoCargado alimentoCargado)
+        {
+            var consumoDiario = _context.ConsumoDiario.FirstOrDefault(c => c.ConsumoDiario_Id== consumoDiarioId);
+            consumoDiario.AlimentoCargados.Add(alimentoCargado);
+            SumarNutrientres();
+            return Guardar();
+        }
+        public void SumarNutrientres()
+        {
+
         }
     }
 }

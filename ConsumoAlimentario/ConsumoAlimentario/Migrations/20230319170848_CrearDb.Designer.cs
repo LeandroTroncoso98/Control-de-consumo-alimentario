@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConsumoAlimentario.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230317150742_ArregloDeRelaciones")]
-    partial class ArregloDeRelaciones
+    [Migration("20230319170848_CrearDb")]
+    partial class CrearDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -108,6 +108,9 @@ namespace ConsumoAlimentario.Migrations
                     b.Property<float>("Carbohidratos")
                         .HasColumnType("real");
 
+                    b.Property<int>("ConsumoDiario_Id")
+                        .HasColumnType("int");
+
                     b.Property<float>("Fibra")
                         .HasColumnType("real");
 
@@ -138,6 +141,8 @@ namespace ConsumoAlimentario.Migrations
                     b.HasKey("AlimentoCargado_Id");
 
                     b.HasIndex("Alimento_Id");
+
+                    b.HasIndex("ConsumoDiario_Id");
 
                     b.ToTable("AlimentoCargado");
                 });
@@ -194,21 +199,6 @@ namespace ConsumoAlimentario.Migrations
                     b.ToTable("ConsumoDiario");
                 });
 
-            modelBuilder.Entity("ConsumoAlimentario.Models.ConsumoDiarioAlimento", b =>
-                {
-                    b.Property<int>("ConsumoDiario_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Alimento_Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("ConsumoDiario_Id", "Alimento_Id");
-
-                    b.HasIndex("Alimento_Id");
-
-                    b.ToTable("ConsumoDiarioAlimento");
-                });
-
             modelBuilder.Entity("ConsumoAlimentario.Models.AlimentoCargado", b =>
                 {
                     b.HasOne("ConsumoAlimentario.Models.Alimento", "Alimento")
@@ -217,19 +207,8 @@ namespace ConsumoAlimentario.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Alimento");
-                });
-
-            modelBuilder.Entity("ConsumoAlimentario.Models.ConsumoDiarioAlimento", b =>
-                {
-                    b.HasOne("ConsumoAlimentario.Models.AlimentoCargado", "Alimento")
-                        .WithMany("ConsumoDiarioAlimentos")
-                        .HasForeignKey("Alimento_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ConsumoAlimentario.Models.ConsumoDiario", "ConsumoDiario")
-                        .WithMany("consumoDiarioAlimentos")
+                        .WithMany("AlimentoCargados")
                         .HasForeignKey("ConsumoDiario_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -244,14 +223,9 @@ namespace ConsumoAlimentario.Migrations
                     b.Navigation("AlimentoCargado");
                 });
 
-            modelBuilder.Entity("ConsumoAlimentario.Models.AlimentoCargado", b =>
-                {
-                    b.Navigation("ConsumoDiarioAlimentos");
-                });
-
             modelBuilder.Entity("ConsumoAlimentario.Models.ConsumoDiario", b =>
                 {
-                    b.Navigation("consumoDiarioAlimentos");
+                    b.Navigation("AlimentoCargados");
                 });
 #pragma warning restore 612, 618
         }

@@ -25,7 +25,10 @@ namespace ConsumoAlimentario.Models
         public float VitaminaC { get; set; }
         public float Calcio { get; set; }
         public float Hierro { get; set; }
-        public ICollection<ConsumoDiarioAlimento> ConsumoDiarioAlimentos { get; set; }
+
+        [ForeignKey("ConsumoDiario")]
+        public int ConsumoDiario_Id { get; set; }
+        public ConsumoDiario ConsumoDiario {get;set;}
 
     }
 }
